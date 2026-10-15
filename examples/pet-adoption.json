@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "id": "petAdoption",
+  "title": "Adoption application",
+  "components": [
+    { "id": "applicantName", "type": "text", "label": "Your name", "required": true },
+    {
+      "id": "phone",
+      "type": "text",
+      "label": "Phone",
+      "inputType": "tel",
+      "required": true,
+      "pattern": "\\+?[0-9 ]{7,15}"
+    },
+    {
+      "id": "age",
+      "type": "number",
+      "label": "Age",
+      "required": true,
+      "min": 18,
+      "max": 120,
+      "messages": { "min": "You must be 18 or over to adopt." }
+    },
+    {
+      "id": "housing",
+      "type": "select",
+      "label": "Housing",
+      "required": true,
+      "options": [
+        { "label": "I own my home", "value": "own" },
+        { "label": "I rent", "value": "rent" }
+      ]
+    },
+    {
+      "id": "landlordAllowsPets",
+      "type": "checkbox",
+      "label": "My landlord allows pets",
+      "required": true
+    },
+    { "id": "hasGarden", "type": "switch", "label": "I have a garden" },
+    {
+      "id": "gardenFenced",
+      "type": "radio",
+      "label": "Is the garden fenced?",
+      "orientation": "horizontal",
+      "options": [
+        { "label": "Yes", "value": "yes" },
+        { "label": "No", "value": "no" }
+      ]
+    },
+    {
+      "id": "currentPets",
+      "type": "repeater",
+      "label": "Pets you have now",
+      "itemLabel": "Pet",
+      "addLabel": "Add a pet",
+      "maxItems": 5,
+      "item": [{ "type": "row", "children": ["petKind", "petAge"] }, "petNeutered"]
+    },
+    {
+      "id": "petKind",
+      "type": "select",
+      "label": "Kind",
+      "required": true,
+      "options": [
+        { "label": "Dog", "value": "dog" },
+        { "label": "Cat", "value": "cat" },
+        { "label": "Other", "value": "other" }
+      ]
+    },
+    { "id": "petAge", "type": "number", "label": "Age in years", "min": 0, "max": 40 },
+    { "id": "petNeutered", "type": "checkbox", "label": "Neutered" },
+    {
+      "id": "visitNote",
+      "type": "paragraph",
+      "text": "Because you have a garden, a volunteer will arrange a short home visit."
+    },
+    {
+      "id": "visitDay",
+      "type": "date",
+      "label": "Preferred visit day",
+      "required": true,
+      "min": "2026-01-01"
+    },
+    {
+      "id": "reviewIntro",
+      "type": "alert",
+      "tone": "info",
+      "text": "Check your answers. Submitting sends the application to the shelter."
+    },
+    {
+      "id": "editHome",
+      "type": "button",
+      "label": "Change home details",
+      "on": { "click": { "action": "navigation.go_to_page", "args": { "page": "home" } } }
+    },
+    {
+      "id": "consent",
+      "type": "checkbox",
+      "label": "The shelter may contact my references",
+      "required": true
+    }
+  ],
+  "pages": [
+    {
+      "id": "applicant",
+      "title": "About you",
+      "layout": [{ "type": "row", "children": ["applicantName", "phone"] }, "age"],
+      "submission": { "handler": "shelter.saveApplicant" }
+    },
+    {
+      "id": "home",
+      "title": "Your home",
+      "layout": ["housing", "landlordAllowsPets", "hasGarden", "gardenFenced", "currentPets"],
+      "submission": { "handler": "shelter.saveHome", "payload": "all" }
+    },
+    { "id": "homeVisit", "title": "Home visit", "layout": ["visitNote", "visitDay"] },
+    {
+      "id": "review",
+      "title": "Review",
+      "layout": ["reviewIntro", "editHome", "consent"],
+      "submission": {
+        "handler": "shelter.submitApplication",
+        "payload": "all",
+        "label": "Send application"
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "when": { "field": "housing", "op": "eq", "value": "rent" },
+      "effect": "show",
+      "target": "landlordAllowsPets"
+    },
+    {
+      "when": { "field": "hasGarden", "op": "eq", "value": true },
+      "effect": "show",
+      "target": ["gardenFenced", "homeVisit"]
+    },
+    {
+      "when": { "field": "petKind", "op": "eq", "value": "other" },
+      "effect": "hide",
+      "target": "petNeutered"
+    }
+  ],
+  "submission": { "strategy": "perStep" },
+  "navigation": { "progress": "steps" }
+}

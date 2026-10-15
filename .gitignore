@@ -1,0 +1,13 @@
+node_modules
+dist
+.next
+.turbo
+coverage
+*.tsbuildinfo
+*.tgz
+next-env.d.ts
+test-results
+playwright-report
+benchmarks/results/*.raw.json
+.env*
+.DS_Store

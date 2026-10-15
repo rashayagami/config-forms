@@ -1,0 +1,13 @@
+{
+  "name": "benchmarks",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "benchmark": "node --expose-gc compile.bench.mjs && node browser.bench.mjs"
+  },
+  "dependencies": {
+    "@form-config/core": "workspace:*",
+    "@playwright/test": "1.64.0"
+  }
+}

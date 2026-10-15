@@ -1,0 +1,29 @@
+{
+  "name": "playground",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3100",
+    "build": "next build",
+    "start": "next start -p 3100",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "lint": "eslint app components lib e2e",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@form-config/core": "workspace:*",
+    "@form-config/react": "workspace:*",
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "puppeteer-core": "25.13.0",
+    "typescript": "6.0.3"
+  }
+}

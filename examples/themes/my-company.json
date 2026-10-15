@@ -1,0 +1,42 @@
+{
+  "theme": {
+    "name": "my-company",
+    "colors": {
+      "primary": "#7C3AED",
+      "primaryForeground": "#FFFFFF",
+      "secondary": "#0F766E",
+      "secondaryForeground": "#FFFFFF",
+      "background": "#FFFFFF",
+      "foreground": "#18181B",
+      "surface": "#FAFAFA",
+      "surfaceForeground": "#18181B",
+      "muted": "#F4F4F5",
+      "mutedForeground": "#71717A",
+      "border": "#E4E4E7",
+      "input": "#D4D4D8",
+      "ring": "#7C3AED",
+      "success": "#15803D",
+      "warning": "#B45309",
+      "danger": "#DC2626",
+      "info": "#0284C7"
+    },
+    "dark": {
+      "colors": {
+        "primary": "#A78BFA",
+        "primaryForeground": "#1E1035",
+        "background": "#0F0F12",
+        "foreground": "#F4F4F5",
+        "surface": "#18181B",
+        "muted": "#27272A",
+        "mutedForeground": "#A1A1AA",
+        "border": "#3F3F46",
+        "input": "#52525B"
+      }
+    },
+    "radius": {
+      "small": "4px",
+      "medium": "8px",
+      "large": "12px"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "id": "eventRegistration",
+  "title": "Register for the conference",
+  "components": [
+    {
+      "id": "fullName",
+      "type": "text",
+      "label": "Full name",
+      "required": true,
+      "autoComplete": "name"
+    },
+    {
+      "id": "email",
+      "type": "text",
+      "label": "Email",
+      "inputType": "email",
+      "required": true,
+      "autoComplete": "email",
+      "pattern": "[^@\\s]+@[^@\\s]+\\.[^@\\s]+",
+      "messages": { "pattern": "Enter an email address like name@example.com." }
+    },
+    {
+      "id": "ticket",
+      "type": "radio",
+      "label": "Ticket",
+      "required": true,
+      "options": [
+        { "label": "One day", "value": "day" },
+        { "label": "Full conference", "value": "full" },
+        { "label": "Student", "value": "student", "description": "Bring a valid student card." }
+      ]
+    },
+    { "id": "studentId", "type": "text", "label": "Student card number", "required": true },
+    {
+      "id": "sessions",
+      "type": "checkbox-group",
+      "label": "Workshops",
+      "description": "Choose up to two.",
+      "maxItems": 2,
+      "options": [
+        { "label": "Design systems", "value": "design" },
+        { "label": "Accessibility", "value": "a11y" },
+        { "label": "Performance", "value": "perf" }
+      ]
+    },
+    { "id": "bringingGuest", "type": "switch", "label": "Bringing a guest" },
+    { "id": "guestName", "type": "text", "label": "Guest name" },
+    { "id": "dietary", "type": "textarea", "label": "Dietary needs", "rows": 2, "maxLength": 200 },
+    {
+      "id": "terms",
+      "type": "checkbox",
+      "label": "I agree to the code of conduct",
+      "required": true
+    }
+  ],
+  "layout": [
+    {
+      "type": "section",
+      "title": "About you",
+      "children": [{ "type": "row", "children": ["fullName", "email"] }]
+    },
+    { "type": "section", "title": "Your ticket", "children": ["ticket", "studentId", "sessions"] },
+    {
+      "type": "section",
+      "id": "extras",
+      "title": "Extras",
+      "children": ["bringingGuest", "guestName", "dietary"]
+    },
+    "terms"
+  ],
+  "dependencies": [
+    {
+      "when": { "field": "ticket", "op": "eq", "value": "student" },
+      "effect": "show",
+      "target": "studentId"
+    },
+    {
+      "when": { "field": "bringingGuest", "op": "eq", "value": true },
+      "effect": "show",
+      "target": "guestName"
+    },
+    {
+      "when": { "field": "bringingGuest", "op": "eq", "value": true },
+      "effect": "require",
+      "target": "guestName"
+    },
+    {
+      "when": { "field": "ticket", "op": "eq", "value": "day" },
+      "effect": "disable",
+      "target": "sessions"
+    },
+    {
+      "when": { "field": "ticket", "op": "eq", "value": "day" },
+      "effect": "clear",
+      "target": "sessions"
+    }
+  ],
+  "submitLabel": "Register",
+  "showReset": true
+}

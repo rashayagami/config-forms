@@ -1,0 +1,13 @@
+{
+  "name": "ocean",
+  "colors": {
+    "primary": "#0E7490",
+    "primaryForeground": "#FFFFFF",
+    "background": "#F7FDFF",
+    "foreground": "#083344"
+  },
+  "radius": {
+    "medium": "2px",
+    "large": "4px"
+  }
+}

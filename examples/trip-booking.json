@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "id": "tripBooking",
+  "title": "Book a trip",
+  "components": [
+    {
+      "id": "destination",
+      "type": "combobox",
+      "label": "Destination",
+      "required": true,
+      "options": [
+        { "label": "Lisbon", "value": "LIS" },
+        { "label": "Oslo", "value": "OSL" },
+        { "label": "Reykjavik", "value": "KEF" },
+        { "label": "Tokyo", "value": "HND" },
+        { "label": "Nairobi", "value": "NBO" }
+      ]
+    },
+    {
+      "id": "departure",
+      "type": "date",
+      "label": "Departure",
+      "required": true,
+      "min": "2026-01-01"
+    },
+    {
+      "id": "nights",
+      "type": "number",
+      "label": "Nights",
+      "required": true,
+      "min": 1,
+      "max": 30,
+      "defaultValue": 3
+    },
+    {
+      "id": "cabin",
+      "type": "select",
+      "label": "Cabin",
+      "required": true,
+      "options": [
+        { "label": "Economy", "value": "economy" },
+        { "label": "Business", "value": "business" }
+      ]
+    },
+    {
+      "id": "travellers",
+      "type": "repeater",
+      "label": "Travellers",
+      "itemLabel": "Traveller",
+      "addLabel": "Add traveller",
+      "minItems": 1,
+      "maxItems": 6,
+      "required": true,
+      "item": [{ "type": "row", "children": ["travellerName", "travellerAge"] }]
+    },
+    { "id": "travellerName", "type": "text", "label": "Name", "required": true },
+    {
+      "id": "travellerAge",
+      "type": "number",
+      "label": "Age",
+      "required": true,
+      "min": 0,
+      "max": 120
+    },
+    {
+      "id": "extras",
+      "type": "multiselect",
+      "label": "Extras",
+      "options": [
+        { "label": "Checked bag", "value": "bag" },
+        { "label": "Seat choice", "value": "seat" },
+        { "label": "Travel insurance", "value": "insurance" }
+      ]
+    },
+    {
+      "id": "insuranceNote",
+      "type": "alert",
+      "tone": "warning",
+      "title": "Insurance",
+      "text": "Insurance covers cancellations made more than 48 hours before departure."
+    },
+    { "id": "notes", "type": "textarea", "label": "Notes for the agent" },
+    {
+      "id": "editTravellers",
+      "type": "button",
+      "label": "Edit travellers",
+      "on": { "click": { "action": "navigation.go_to_page", "args": { "page": "people" } } }
+    }
+  ],
+  "pages": [
+    {
+      "id": "trip",
+      "title": "Trip",
+      "layout": [
+        {
+          "type": "grid",
+          "columns": 2,
+          "children": ["destination", "cabin", "departure", "nights"]
+        }
+      ]
+    },
+    { "id": "people", "title": "Travellers", "layout": ["travellers"] },
+    {
+      "id": "options",
+      "title": "Options",
+      "layout": ["extras", "insuranceNote", "notes", "editTravellers"]
+    }
+  ],
+  "dependencies": [
+    {
+      "when": { "field": "destination", "op": "in", "value": ["HND", "NBO"] },
+      "effect": "options",
+      "target": "cabin",
+      "options": [
+        { "label": "Economy", "value": "economy" },
+        { "label": "Premium economy", "value": "premium" },
+        { "label": "Business", "value": "business" }
+      ]
+    },
+    {
+      "when": { "field": "destination", "op": "notIn", "value": ["HND", "NBO"] },
+      "effect": "clear",
+      "target": "cabin"
+    },
+    {
+      "when": { "field": "extras", "op": "includes", "value": "insurance" },
+      "effect": "show",
+      "target": "insuranceNote"
+    }
+  ],
+  "submission": { "strategy": "final", "handler": "agency.book" },
+  "navigation": { "progress": "bar" },
+  "submitLabel": "Book trip"
+}

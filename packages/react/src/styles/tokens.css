@@ -1,0 +1,89 @@
+/*
+ * Default palette. It is declared on the outermost library element only (a
+ * ThemeProvider without a theme, or a form outside any ThemeProvider), with
+ * zero specificity, so a JSON theme (scoped by [data-fc-theme]) always wins
+ * and no host element is styled.
+ */
+:where(.fc-theme:not([data-fc-theme]), .fc-root:not([data-fc-theme]):not(.fc-theme *)) {
+  --fc-primary: #2f5bd3;
+  --fc-primary-foreground: #ffffff;
+  --fc-secondary: color-mix(in srgb, var(--fc-foreground) 8%, var(--fc-background));
+  --fc-secondary-foreground: var(--fc-foreground);
+  --fc-background: #ffffff;
+  --fc-foreground: #1c1d21;
+  --fc-surface: #ffffff;
+  --fc-surface-foreground: var(--fc-foreground);
+  --fc-muted: #f4f5f7;
+  --fc-muted-foreground: #5d6170;
+  --fc-border: #d9dbe1;
+  --fc-input: #c4c7d0;
+  --fc-ring: var(--fc-primary);
+  --fc-success: #15803d;
+  --fc-warning: #b45309;
+  --fc-danger: #dc2626;
+  --fc-info: #0369a1;
+  --fc-radius-small: 4px;
+  --fc-radius-medium: 6px;
+  --fc-radius-large: 10px;
+  color-scheme: light;
+}
+
+:where(
+  .fc-theme:not([data-fc-theme]),
+  .fc-root:not([data-fc-theme]):not(.fc-theme *)
+)[data-fc-scheme='dark'] {
+  --fc-primary: #8aa8ff;
+  --fc-primary-foreground: #0d1224;
+  --fc-background: #15161a;
+  --fc-foreground: #e8e9ed;
+  --fc-surface: #1d1f24;
+  --fc-muted: #23252b;
+  --fc-muted-foreground: #a2a6b3;
+  --fc-border: #33363e;
+  --fc-input: #464a54;
+  --fc-success: #4ade80;
+  --fc-warning: #fbbf24;
+  --fc-danger: #f87171;
+  --fc-info: #38bdf8;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :where(
+    .fc-theme:not([data-fc-theme]),
+    .fc-root:not([data-fc-theme]):not(.fc-theme *)
+  )[data-fc-scheme='system'] {
+    --fc-primary: #8aa8ff;
+    --fc-primary-foreground: #0d1224;
+    --fc-background: #15161a;
+    --fc-foreground: #e8e9ed;
+    --fc-surface: #1d1f24;
+    --fc-muted: #23252b;
+    --fc-muted-foreground: #a2a6b3;
+    --fc-border: #33363e;
+    --fc-input: #464a54;
+    --fc-success: #4ade80;
+    --fc-warning: #fbbf24;
+    --fc-danger: #f87171;
+    --fc-info: #38bdf8;
+    color-scheme: dark;
+  }
+}
+
+/* Sizes and type. Override any of these on .fc-root or .fc-theme. */
+:where(.fc-theme, .fc-root) {
+  --fc-font: inherit;
+  --fc-font-size: 0.875rem;
+  --fc-font-size-small: 0.8125rem;
+  --fc-font-size-title: 1.25rem;
+  --fc-font-size-page-title: 1.0625rem;
+  --fc-line-height: 1.45;
+  --fc-control-height: 2.5rem;
+  --fc-space-1: 0.25rem;
+  --fc-space-2: 0.5rem;
+  --fc-space-3: 0.75rem;
+  --fc-space-4: 1rem;
+  --fc-space-6: 1.5rem;
+  --fc-focus-width: 2px;
+  --fc-duration: 120ms;
+}
