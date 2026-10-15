@@ -1,0 +1,37 @@
+{
+  "environment": {
+    "browser": "Chrome 155.0.8059.79",
+    "build": "next build (production)",
+    "cpu": "Apple M1",
+    "cores": 8,
+    "loads": 5,
+    "keystrokes": 20,
+    "date": "2026-10-15T23:17:31.024Z"
+  },
+  "results": [
+    {
+      "fields": 10,
+      "mountMedianMs": 14.9,
+      "keystrokeToFrameMedianMs": 28.85,
+      "textFieldsRerenderedByTyping": 1
+    },
+    {
+      "fields": 100,
+      "mountMedianMs": 38,
+      "keystrokeToFrameMedianMs": 27.5,
+      "textFieldsRerenderedByTyping": 1
+    },
+    {
+      "fields": 500,
+      "mountMedianMs": 299.3,
+      "keystrokeToFrameMedianMs": 24.45,
+      "textFieldsRerenderedByTyping": 1
+    },
+    {
+      "fields": 1000,
+      "mountMedianMs": 1142.3,
+      "keystrokeToFrameMedianMs": 19.55,
+      "textFieldsRerenderedByTyping": 1
+    }
+  ]
+}

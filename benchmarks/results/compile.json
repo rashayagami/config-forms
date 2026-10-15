@@ -1,0 +1,51 @@
+{
+  "environment": {
+    "node": "v22.23.2",
+    "cpu": "Apple M1",
+    "cores": 8,
+    "runs": 30,
+    "date": "2026-10-15T23:17:14.255Z"
+  },
+  "results": [
+    {
+      "fields": 10,
+      "compileMedianMs": 0.166,
+      "compileP95Ms": 0.252,
+      "cachedCompileMedianMs": 0.0002,
+      "validateAllMedianMs": 0.013,
+      "validateOneFieldMedianMs": 0.0028,
+      "effectUpdateMedianMs": 0.0004,
+      "compileHeapMedianKb": 221
+    },
+    {
+      "fields": 100,
+      "compileMedianMs": 1.197,
+      "compileP95Ms": 1.417,
+      "cachedCompileMedianMs": 0.0002,
+      "validateAllMedianMs": 0.129,
+      "validateOneFieldMedianMs": 0.013,
+      "effectUpdateMedianMs": 0.0004,
+      "compileHeapMedianKb": 2079
+    },
+    {
+      "fields": 500,
+      "compileMedianMs": 3.216,
+      "compileP95Ms": 3.891,
+      "cachedCompileMedianMs": 0.0002,
+      "validateAllMedianMs": 0.292,
+      "validateOneFieldMedianMs": 0.0363,
+      "effectUpdateMedianMs": 0.0004,
+      "compileHeapMedianKb": 9098
+    },
+    {
+      "fields": 1000,
+      "compileMedianMs": 6.821,
+      "compileP95Ms": 7.543,
+      "cachedCompileMedianMs": 0.0002,
+      "validateAllMedianMs": 0.366,
+      "validateOneFieldMedianMs": 0.0622,
+      "effectUpdateMedianMs": 0.0004,
+      "compileHeapMedianKb": 3363
+    }
+  ]
+}
